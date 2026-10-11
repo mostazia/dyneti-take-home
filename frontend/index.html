@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Cat or Dog</title>
+
+    <link rel="stylesheet" href="static/assets/styles/style.css" />
+
+    <link rel="icon" type="image/svg+xml" href="static/assets/favicon.svg" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="static/assets/scripts/upload.js"></script>
+    <script src="static/assets/scripts/webcam.js"></script>
+    <script src="static/assets/scripts/preview.js"></script>
+    <script src="static/assets/scripts/process.js"></script>
+  </head>
+  <body class="center-box">
+    <div id="wrapper" class="column-box">
+      <div id="title">Cat or Dog?</div>
+      <div id="subtitle">📷 Image Classifier</div>
+      <div class="instructions">
+        Upload an image and we'll tell you whether it contains a cat or a dog.
+      </div>
+      <div id="startMenu" class="column-box">
+        <div
+          id="uploadButton"
+          class="center-box button"
+          onclick="triggerImageUpload()"
+        >
+          Upload an Image
+        </div>
+        <div
+          id="webcamButton"
+          class="center-box button"
+          onclick="triggerWebcam()"
+        >
+          Take a Photo
+        </div>
+      </div>
+      <div id="imageContainer" class="center-box">
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/*"
+          onchange="handleImageUpload(event)"
+          hidden
+        />
+        <video
+          id="liveWebcam"
+          autoplay
+          playsinline
+          muted
+          hidden
+          disablePictureInPicture
+        ></video>
+        <div id="snapButton" class="center-box" onclick="snapPhoto()">
+          <div class="snapCircle"></div>
+        </div>
+        <canvas id="canvas" style="display: none"></canvas>
+        <img id="imagePreview" alt="Captured photo preview" />
+      </div>
+      <div id="loadingContainer" class="resultsContainer center-box">
+        analyzing image...
+      </div>
+      <div id="errorContainer" class="resultsContainer center-box">
+        There was an error while classifying this image. Please try again.
+      </div>
+      <div id="resultsContainer" class="resultsContainer center-box">
+        <span id="resultsEmoji">🐶</span>: We are&nbsp;
+        <span id="resultsConfidence">XX</span>% confident that this image
+        contains a&nbsp; <span id="resultsLabel">dog</span>!
+      </div>
+    </div>
+    <script src="static/assets/scripts/variables.js"></script>
+  </body>
+</html>
